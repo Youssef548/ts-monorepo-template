@@ -1,0 +1,16 @@
+{
+  "extends": "@app/config/tsconfig/base.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": false,
+    "noEmit": true,
+    "composite": false,
+    // base.json turns declarations on so published packages ship types. This
+    // package is private and emits nothing, and leaving it on makes tsc try to
+    // name the inferred type of the exported factory (TS2742).
+    "declaration": false,
+    "declarationMap": false,
+    "types": ["node"]
+  },
+  "include": ["test", "index.js"]
+}

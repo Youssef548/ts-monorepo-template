@@ -1,0 +1,15 @@
+{
+  "extends": "@app/config/tsconfig/nest.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "./dist",
+    "sourceMap": true,
+    "incremental": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "strictBindCallApply": true,
+    "noFallthroughCasesInSwitch": true,
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true
+  }
+}

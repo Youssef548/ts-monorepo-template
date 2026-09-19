@@ -1,0 +1,37 @@
+{
+  "name": "web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "test": "NODE_ENV=test vitest run",
+    "typecheck": "next typegen && tsc --noEmit"
+  },
+  "dependencies": {
+    "@app/ui": "workspace:^",
+    "next": "15.5.25",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  },
+  "devDependencies": {
+    "@app/config": "workspace:^",
+    "@app/eslint-config": "workspace:^",
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/react": "^16.3.3",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^4.7.0",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.25",
+    "jsdom": "^30.1.0",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "vitest": "^2.1.0"
+  }
+}

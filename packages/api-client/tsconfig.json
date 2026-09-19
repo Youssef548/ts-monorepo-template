@@ -1,0 +1,9 @@
+{
+  "extends": "@app/config/tsconfig/base.json",
+  "compilerOptions": {
+    "lib": ["dom", "ES2023"],
+    "noEmit": true,
+    "composite": false
+  },
+  "include": ["src", "test"]
+}

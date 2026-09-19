@@ -1,0 +1,32 @@
+{
+  "name": "@app/database",
+  "version": "0.1.0",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "default": "./dist/src/index.js"
+    }
+  },
+  "scripts": {
+    "db:generate": "prisma generate",
+    "db:migrate": "node ../../scripts/check-db-env.mjs && prisma migrate dev",
+    "db:deploy": "node ../../scripts/check-db-env.mjs && prisma migrate deploy",
+    "build": "pnpm db:generate && tsc -p tsconfig.build.json",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@prisma/client": "^6"
+  },
+  "devDependencies": {
+    "@app/config": "workspace:*",
+    "@app/eslint-config": "workspace:*",
+    "dotenv": "^18.0.0",
+    "eslint": "^9.18.0",
+    "prisma": "^6",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.20.0"
+  }
+}

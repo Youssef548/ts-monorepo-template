@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// No models yet — that is deliberate. The data seam (generator, datasource,
+// migrations, the client re-export) is architecture; your models are domain.
+//
+// Add one file per model in this directory, e.g. `User.prisma`:
+//
+//   model User {
+//     id    String @id @default(uuid())
+//     email String @unique
+//   }
+//
+// Prisma discovers every *.prisma file under this directory, so one file per
+// model costs nothing and keeps a large schema navigable. Then:
+//
+//   pnpm --filter @app/database db:migrate --name init

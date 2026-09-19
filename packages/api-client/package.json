@@ -1,0 +1,25 @@
+{
+  "name": "@app/api-client",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./src/index.ts",
+  "exports": { ".": "./src/index.ts" },
+  "scripts": {
+    "lint": "eslint .",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@app/contracts": "workspace:*"
+  },
+  "devDependencies": {
+    "@app/config": "workspace:*",
+    "@app/eslint-config": "workspace:*",
+    "eslint": "^9.18.0",
+    "msw": "^2.6.0",
+    "typescript": "^5.7.0",
+    "typescript-eslint": "^8.20.0",
+    "vitest": "^2.1.0",
+    "zod": "^4.4.3"
+  }
+}

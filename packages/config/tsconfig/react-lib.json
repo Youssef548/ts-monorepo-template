@@ -1,0 +1,9 @@
+{
+  "extends": "./base.json",
+  "compilerOptions": {
+    "lib": ["dom", "ES2023"],
+    "jsx": "react-jsx",
+    "noEmit": true,
+    "composite": false
+  }
+}

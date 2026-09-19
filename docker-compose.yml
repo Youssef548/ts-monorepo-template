@@ -1,0 +1,18 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      # Values come from the root .env (see .env.example). Never hardcoded, so
+      # renaming the project never means editing this file.
+      POSTGRES_DB: ${DB_NAME:-app}
+      POSTGRES_USER: ${DB_USER:-app}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-app}
+    ports: ["5432:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-app} -d ${DB_NAME:-app}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+volumes:
+  pgdata:

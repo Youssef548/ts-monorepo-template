@@ -1,0 +1,12 @@
+{
+  "extends": "./base.json",
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "ES2023"],
+    "jsx": "preserve",
+    "allowJs": true,
+    "noEmit": true,
+    "incremental": true,
+    "composite": false
+  },
+  "exclude": ["node_modules", ".next"]
+}

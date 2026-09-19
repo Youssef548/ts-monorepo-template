@@ -1,0 +1,43 @@
+name: ci
+
+on:
+  push: { branches: [main] }
+  pull_request:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: app_test
+          POSTGRES_USER: app
+          POSTGRES_PASSWORD: app
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    env:
+      APP_NAME: app
+      DATABASE_URL: postgresql://app:app@localhost:5432/app_test
+      WEB_URL: http://localhost:3000
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      # Must precede setup-node, whose `cache: pnpm` needs pnpm on PATH.
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      # The API's e2e suite boots the real app, which connects to Postgres.
+      # The schema has no models yet, so db:deploy applies nothing — but it
+      # proves the migration path stays runnable.
+      - run: pnpm --filter @app/database db:generate
+      - run: pnpm --filter @app/database db:deploy
+      # On main, run everything. `--affected` runs no tasks at all for a change
+      # that touches no package (docs, workflows) and still exits 0 — a green
+      # check that tested nothing.
+      - if: github.event_name == 'pull_request'
+        run: pnpm turbo run lint typecheck test build --affected
+      - if: github.event_name != 'pull_request'
+        run: pnpm turbo run lint typecheck test build
